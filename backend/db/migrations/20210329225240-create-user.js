@@ -19,7 +19,7 @@ module.exports = {
       email: {
         allowNull: false,
         unique: true,
-        type: Sequelize.STRING(100)
+        type: Sequelize.STRING(255)
       },
       hashedPassword: {
         allowNull: false,
