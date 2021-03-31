@@ -1,4 +1,4 @@
-form {
+.signup {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,19 +9,19 @@ form {
     height: 25%;
 }
 
-button {
+.signup button {
     padding: 5px;
     margin: 10px;
 }
 
-label {
+.signup label {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 5px;
 }
 
-input {
+.signup input {
     width: 100%;
     margin-top: 10px;
     padding: 5px;

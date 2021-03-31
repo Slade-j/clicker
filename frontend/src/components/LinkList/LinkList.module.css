@@ -1,0 +1,22 @@
+#container {
+  width: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: inherit;
+}
+
+.list {
+  list-style-type: none;
+}
+
+.link {
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  padding: 10px;
+  margin: 5px;
+}
+
+.link:hover {
+  color: rgba(255,255,255,0.7)
+}

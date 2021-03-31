@@ -53,17 +53,17 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path='/photos'>
-            <TopNav />
-          </Route>
-        </Switch>
-      )}
+      <Switch>
+        <Route path="/signup">
+          <Navigation isLoaded={isLoaded} />
+            {isLoaded && (
+              <SignupFormPage />
+              )}
+        </Route>
+        <Route path='/photos'>
+          <TopNav />
+        </Route>
+      </Switch>
     </>
   );
 }

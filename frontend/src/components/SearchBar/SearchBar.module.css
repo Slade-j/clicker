@@ -1,0 +1,38 @@
+.search {
+  height: inherit;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.field {
+  background-color: rgb(200,200,200);
+  height: 33px;
+  transition: width 0.2s ease;
+  width: 180px;
+  outline: none;
+  border: none;
+  border-radius: 3px, 3px, 3px, 0px;
+  padding: 6px, 10px, 6px, 0px;
+}
+
+.field::placeholder {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.field:focus {
+  width: 200px;
+  background-color: #fff;
+
+}
+
+.glass {
+  height: 33px;
+  background-color: rgb(200,200,200);
+  width: 33px;
+  border-radius: 3px, 0px, 3px, 3px;
+  border: none;
+  margin: none;
+}

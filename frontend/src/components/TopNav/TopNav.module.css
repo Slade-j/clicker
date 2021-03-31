@@ -3,5 +3,20 @@
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+}
+
+.wrapper {
+  background-color: inherit;
+  height: inherit;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left, .right {
+  background-color: inherit;
+  height: 100%;
+  width: auto;
+  display: flex;
 }
