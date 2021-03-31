@@ -1,0 +1,14 @@
+.container {
+  height: inherit;
+  width: 41px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pic {
+  background-image: url('../../assets/megalo-box-joe-artwork.png');
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+}
