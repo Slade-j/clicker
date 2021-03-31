@@ -10,7 +10,7 @@ function LinkList({ navArray }) {
 			{navArray.map((item, idx) => {
 				if (idx === 0) {
 					return <NavLink exact to={item}>{navArray[1]}</NavLink>
-				} else if ( 2 % idx === 0) {
+				} else if (idx % 2 === 0) {
 					return <NavLink to={item}>{navArray[idx + 1]}</NavLink>
 				}
 			})}
