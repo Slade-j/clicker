@@ -11,7 +11,7 @@ function Logo() {
         <div className={red}></div>
       </div>
       <div className='text-container'></div>
-        <h3 className={text}>flipper</h3>
+        <h3 className={text}>tickr</h3>
     </div>
   )
 }
