@@ -43,6 +43,11 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import TopNav from "./components/TopNav";
+import { nav, wrapper, left, right } from './components/TopNav/TopNav.module.css';
+import Logo from "./components/Logo";
+import SearchBar from "./components/SearchBar";
+import LinkList from './components/LinkList';
+import UserPic from './components/UserPic';
 
 function App() {
   const dispatch = useDispatch();
@@ -58,10 +63,14 @@ function App() {
           <Navigation isLoaded={isLoaded} />
             {isLoaded && (
               <SignupFormPage />
+
               )}
         </Route>
         <Route path='/photos'>
-          <TopNav />
+          <TopNav selectors={ { nav, wrapper, left, right } }
+            components={ {First: Logo, Second: LinkList, Third: SearchBar, Fourth: UserPic}}
+            navArray={['/photos', 'You', '/link/test', 'test1', '/login', 'test2']}
+          />
         </Route>
       </Switch>
     </>
