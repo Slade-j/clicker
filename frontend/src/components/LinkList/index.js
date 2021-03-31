@@ -8,15 +8,17 @@ function LinkList({ navArray }) {
   return (
     <ul id={container}>
 			{navArray.map((item, idx) => {
+				const key = navArray[idx + 1];
+
 				if (idx === 0) {
 					return (
-						<li className={list} key={item}>
-							<NavLink className={link} key={item}exact to={item}>{navArray[1]}</NavLink>
+						<li className={list} key={key}>
+							<NavLink className={link} key={item} exact to={item}>{key}</NavLink>
 						</li>)
 				} else if (idx % 2 === 0) {
 					return (
-						<li className={list} key={item}>
-							<NavLink className={link} key={item} to={item}>{navArray[idx + 1]}</NavLink>
+						<li className={list} key={key}>
+							<NavLink className={link} key={item} to={item}>{key}</NavLink>
 						</li>)
 				}
 			})}

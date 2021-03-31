@@ -5,7 +5,7 @@ function TopPlaque() {
   return (
     <div className='main-container'>
       <div className='centering-div'>
-        <div className='icon'><i class="fas fa-pen"></i></div>
+        <div className='icon'><i className="fas fa-pen"></i></div>
       </div>
     </div>
   )

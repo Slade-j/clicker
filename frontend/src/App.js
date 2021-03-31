@@ -48,6 +48,7 @@ import Logo from "./components/Logo";
 import SearchBar from "./components/SearchBar";
 import LinkList from './components/LinkList';
 import UserPic from './components/UserPic';
+import Plaque from "./components/Plaque";
 
 function App() {
   const dispatch = useDispatch();
@@ -63,14 +64,16 @@ function App() {
           <Navigation isLoaded={isLoaded} />
             {isLoaded && (
               <SignupFormPage />
-
               )}
         </Route>
         <Route path='/photos'>
-          <TopNav selectors={ { nav, wrapper, left, right } }
+          {isLoaded && ([
+            <TopNav key='topNav' selectors={ { nav, wrapper, left, right } }
             components={ {First: Logo, Second: LinkList, Third: SearchBar, Fourth: UserPic}}
             navArray={['/photos', 'You', '/link/test', 'test1', '/login', 'test2']}
-          />
+            />,
+            <Plaque key='plaque' />
+            ])}
         </Route>
       </Switch>
     </>
