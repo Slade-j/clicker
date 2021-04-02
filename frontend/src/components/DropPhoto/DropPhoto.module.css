@@ -1,20 +1,26 @@
+.wrapperContainer {
+  height: 100%;
+  width: 100%;
+}
+
 .dropZone {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #212124;
+  background-color: #2a2a2c;
   color: #fff;
 }
 
 .display {
   width: 100%;
+
   height: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  background-color: #212124;
+  background-color: #2a2a2c;
   color: #fff;
   padding: 20px;
 }
@@ -67,8 +73,25 @@
   align-items: center;
 }
 
+.thumbContainer:hover {
+  background-color: #222;
+}
+
+.thumbFocus {
+  background-color: #222;
+}
+
+.thumbContainer:focus-within {
+  border-color: #ff0084;
+}
+
 .thumbNail {
   margin-bottom: 10px;
   max-width: 166px;
   max-height: 120px;
+  border: 2px solid #222;
+}
+
+.thumbNail:focus {
+  border-color: #ff0084;
 }

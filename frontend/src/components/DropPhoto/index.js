@@ -1,7 +1,8 @@
 // frontend/src/components/DropPhoto/index.js
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addThumbNails } from '../../store/thumbNails';
+import UploadNav from '../UploadNav';
 import {
   dropZone,
   or,
@@ -10,13 +11,16 @@ import {
   uploader,
   thumbNail,
   thumbContainer,
-  display
+  display,
+  wrapperContainer,
+  thumbFocus
  } from './DropPhoto.module.css'
 
 function DropPhoto() {
   const dispatch = useDispatch();
   const previews = useSelector(state => state.thumbNails)
-  // const [ previews, setPreviews ] = useState({ name: null, url: null });
+  const [ selected, setSelected ] = useState([]);
+  const [ divFocus, setDivFocus ] = useState(`${thumbContainer}`)
 
   useEffect(() => {
     if(!previews.length) return;
@@ -39,6 +43,7 @@ function DropPhoto() {
     }));
   }
 
+
   const handleDragOver = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -52,26 +57,37 @@ function DropPhoto() {
     console.log('drag enter event fired');
   }
 
+
+
+  const handleClick = (e) => {
+    e.target.className = divFocus;
+    setDivFocus(`${thumbContainer} ${thumbFocus}`)
+    setSelected([e.target.id]);
+  }
+
   return (
-    <div className={previews.length > 0 ? display : dropZone}
-      onDragEnter={handleDragEnter}
-      onDragOver={handleDragOver}
-      onDrop = {handleDrop}>
-      {previews.length > 0 ?
-        previews.map((image, idx) => (
-        <div key={idx} className={thumbContainer}>
-          <img key={image.url} src={image.url} className={thumbNail} />
-          <span key={image.name}>{image.name}</span>
-          </div>)) :
-        <div className='TextHolder'>
-          <h2 className='title'>Drag and drop photos here</h2>
-          <h2 className={or}>or</h2>
-          <div className={buttonHolder}>
-            <label htmlFor='file' className={labelButton}>Choose photo from file</label>
-            <input type='file' id='file' className={uploader}></input>
+    <div className={wrapperContainer}>
+    <UploadNav selected={selected} />
+      <div className={previews.length > 0 ? display : dropZone}
+        onDragEnter={handleDragEnter}
+        onDragOver={handleDragOver}
+        onDrop = {handleDrop}>
+          {previews.length > 0 ?
+            previews.map((image, idx) => (
+              <div key={idx} id={image.name} className={thumbContainer} onClick={handleClick}>
+                <img key={image.url} src={image.url} className={thumbNail} alt='' />
+                <span key={image.name}>{image.name}</span>
+              </div>)) :
+              <div className='TextHolder'>
+                <h2 className='title'>Drag and drop photos here</h2>
+                <h2 className={or}>or</h2>
+                <div className={buttonHolder}>
+                  <label htmlFor='file' className={labelButton}>Choose photo from file</label>
+                  <input type='file' id='file' className={uploader}></input>
+                </div>
+              </div>
+            }
           </div>
-        </div>
-      }
       </div>
   )
 }

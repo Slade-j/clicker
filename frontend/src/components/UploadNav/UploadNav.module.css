@@ -1,0 +1,20 @@
+.uploadNav {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  background-color: whitesmoke;
+}
+
+.deleteDiv .uploadDiv {
+  height: 100%;
+  width: auto;
+  background-color: inherit;
+}
+
+.deleteButton {
+  height: 80%;
+}
+
+.uploadButton {
+  height: 80%;
+}
