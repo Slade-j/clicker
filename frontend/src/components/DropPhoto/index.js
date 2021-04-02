@@ -13,15 +13,19 @@ import {
   thumbContainer,
   display,
   wrapperContainer,
-  thumbFocus
+  thumbFocus,
+  all
  } from './DropPhoto.module.css'
 
 function DropPhoto() {
   const dispatch = useDispatch();
   const previews = useSelector(state => state.thumbNails)
   const [ selected, setSelected ] = useState([]);
-  const [ divFocus, setDivFocus ] = useState(`${thumbContainer}`)
+  const [ divFocus, setDivFocus ] = useState(`${thumbContainer}`);
+  const [ isAll, setIsAll ] = useState(false);
+  const [ allClass, setAllClass ] = useState(`${display}`)
 
+  // useEffect for cleanup on ObjectURL
   useEffect(() => {
     if(!previews.length) return;
     return () => {
@@ -31,6 +35,11 @@ function DropPhoto() {
       console.log('clean-up-ran');
     }
   }, [previews]);
+
+  // useEffect for slecting all thumbNails
+  useEffect(() => {
+    if(isAll) setAllClass(`${display} ${all}`)
+  }, [isAll])
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -67,8 +76,11 @@ function DropPhoto() {
 
   return (
     <div className={wrapperContainer}>
-    <UploadNav selected={selected} />
-      <div className={previews.length > 0 ? display : dropZone}
+    <UploadNav
+      selected={selected}
+      setSelected={setSelected}
+      setIsAll={setIsAll} />
+      <div className={previews.length > 0 ? allClass : dropZone}
         onDragEnter={handleDragEnter}
         onDragOver={handleDragOver}
         onDrop = {handleDrop}>

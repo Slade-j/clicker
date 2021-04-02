@@ -71,6 +71,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 2px;
 }
 
 .thumbContainer:hover {
@@ -94,4 +95,8 @@
 
 .thumbNail:focus {
   border-color: #ff0084;
+}
+
+.all .thumbContainer {
+  background-color: #222;
 }
