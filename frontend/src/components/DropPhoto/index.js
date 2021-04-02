@@ -1,5 +1,7 @@
 // frontend/src/components/DropPhoto/index.js
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addThumbNails } from '../../store/thumbNails';
 import {
   dropZone,
   or,
@@ -12,18 +14,29 @@ import {
  } from './DropPhoto.module.css'
 
 function DropPhoto() {
-  const [ previews, setPreviews ] = useState({ name: null, url: null });
+  const dispatch = useDispatch();
+  const previews = useSelector(state => state.thumbNails)
+  // const [ previews, setPreviews ] = useState({ name: null, url: null });
+
+  useEffect(() => {
+    if(!previews.length) return;
+    return () => {
+      previews.forEach(image => {
+        URL.revokeObjectURL(image.url);
+      })
+      console.log('clean-up-ran');
+    }
+  }, [previews]);
 
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('drop event fired')
-    setPreviews({
-      url: URL.createObjectURL(e.dataTransfer.files[0]),
-      name: e.dataTransfer.files[0].name
-    });
+    const file = e.dataTransfer.files[0];
 
-    URL.revokeObjectURL(previews.url);
+    dispatch(addThumbNails({
+      url: URL.createObjectURL(e.dataTransfer.files[0]),
+      name: file.name
+    }));
   }
 
   const handleDragOver = (e) => {
@@ -40,15 +53,16 @@ function DropPhoto() {
   }
 
   return (
-    <div className={previews.url?display:dropZone}
+    <div className={previews.length > 0 ? display : dropZone}
       onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
       onDrop = {handleDrop}>
-      {previews.url ?
-        <div className={thumbContainer}>
-          <img src={previews.url} className={thumbNail} />
-          <span>{previews.name}</span>
-          </div> :
+      {previews.length > 0 ?
+        previews.map((image, idx) => (
+        <div key={idx} className={thumbContainer}>
+          <img key={image.url} src={image.url} className={thumbNail} />
+          <span key={image.name}>{image.name}</span>
+          </div>)) :
         <div className='TextHolder'>
           <h2 className='title'>Drag and drop photos here</h2>
           <h2 className={or}>or</h2>
