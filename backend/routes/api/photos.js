@@ -5,4 +5,6 @@ const { s3, singlePublicFileUpload, singleMulterUpload } = require('../../awsS3.
 
 const router = express.Router();
 
+router.post('/', singleMulterUpload('image'))
+
 module.exports = router;

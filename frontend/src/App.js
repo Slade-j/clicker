@@ -50,6 +50,7 @@ import LinkList from './components/LinkList';
 import UserPic from './components/UserPic';
 import Plaque from "./components/Plaque";
 import './index.css';
+import DropPhoto from "./components/DropPhoto";
 
 function App() {
   const dispatch = useDispatch();
@@ -75,6 +76,9 @@ function App() {
             />,
             <Plaque key='plaque' />
             ])}
+        </Route>
+        <Route path='/add-photos'>
+            <DropPhoto />
         </Route>
       </Switch>
     </>
