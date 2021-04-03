@@ -6,12 +6,14 @@ const { s3, multiplePublicFileUpload, multipleMulterUpload } = require('../../aw
 
 const router = express.Router();
 
-router.post('/',
+router.post(
+  '/',
   multipleMulterUpload('images'),
   asyncHandler(async (req, res) => {
     const { ownerId } = req.body;
+    console.log('file /////////', req.file, 'files ------------', req.files, 'req=====', req.body)
     try {
-      const urlArray = await multiplePublicFileUpload(req.file);
+      const urlArray = await multiplePublicFileUpload(req.files);
 
       await Promise.all(urlArray.map(photoUrl => {
         return Photo.create({ ownerId, photoUrl })

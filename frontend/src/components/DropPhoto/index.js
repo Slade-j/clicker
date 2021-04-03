@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addThumbNails } from '../../store/thumbNails';
+import { addPhotos } from '../../store/photos';
 import UploadNav from '../UploadNav';
 import {
   dropZone,
@@ -24,6 +25,8 @@ function DropPhoto() {
   const [ divFocus, setDivFocus ] = useState(`${thumbContainer}`);
   const [ isAll, setIsAll ] = useState(false);
   const [ allClass, setAllClass ] = useState(`${display}`)
+  const [ fileValue, setFileValue ] = useState('');
+  const [ test, setTest ] = useState();
 
   // useEffect for cleanup on ObjectURL
   useEffect(() => {
@@ -36,6 +39,21 @@ function DropPhoto() {
     }
   }, [previews]);
 
+  useEffect(() => {
+    console.log('testState', test);
+  }, [test])
+
+  //useEffect to dispatch to addPhotos
+  // useEffect(() => {
+  //   if(!fileValue) return;
+  //   dispatch(addPhotos(fileValue));
+  //   // dispatch(addThumbNails({
+  //   //   url: URL.createObjectURL(fileValue),
+  //   //   name: fileValue.name
+  //   // }))
+
+  // }, [fileValue]);
+
   // useEffect for slecting all thumbNails
   useEffect(() => {
     if(isAll) setAllClass(`${display} ${all}`)
@@ -44,8 +62,11 @@ function DropPhoto() {
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const file = e.dataTransfer.files[0];
+    const file = e.dataTransfer.files[0]
+    console.log(file)
 
+    // dispatch(addPhotos(file))
+    setTest(e.dataTransfer.files)
     dispatch(addThumbNails({
       url: URL.createObjectURL(e.dataTransfer.files[0]),
       name: file.name
@@ -66,12 +87,14 @@ function DropPhoto() {
     console.log('drag enter event fired');
   }
 
-
-
   const handleClick = (e) => {
     e.target.className = divFocus;
     setDivFocus(`${thumbContainer} ${thumbFocus}`)
     setSelected([e.target.id]);
+  }
+
+  const handleFile = (e) => {
+    setFileValue(e.target.value);
   }
 
   return (
@@ -79,7 +102,8 @@ function DropPhoto() {
     <UploadNav
       selected={selected}
       setSelected={setSelected}
-      setIsAll={setIsAll} />
+      setIsAll={setIsAll}
+      test={test} />
       <div className={previews.length > 0 ? allClass : dropZone}
         onDragEnter={handleDragEnter}
         onDragOver={handleDragOver}
@@ -95,7 +119,7 @@ function DropPhoto() {
                 <h2 className={or}>or</h2>
                 <div className={buttonHolder}>
                   <label htmlFor='file' className={labelButton}>Choose photo from file</label>
-                  <input type='file' id='file' className={uploader}></input>
+                  <input type='file' id='file' value={fileValue} onChange={handleFile} className={uploader}></input>
                 </div>
               </div>
             }

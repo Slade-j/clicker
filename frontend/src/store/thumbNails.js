@@ -1,6 +1,6 @@
 // frontend/src/store/thumbNails.js
 
-const ADD_THUMBNAILS = 'photos/addThumbNails';
+const ADD_THUMBNAILS = 'thumbNails/addThumbNails';
 
 export const addThumbNails = (thumbNails) => {
   return {

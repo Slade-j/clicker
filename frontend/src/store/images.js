@@ -1,31 +1,39 @@
 // frontend/src/store/photos.js
+import { csrfFetch } from './csrf';
 
 const ADD_IMAGES = 'images/add-images';
 
 export const addImages = (images) => {
   return {
-    type: ADD_PHOTOS,
+    type: ADD_IMAGES,
     payload: images
   }
 }
 
-const postImages = (images, ownerId) => async (dispatch) => {
-  const response = await fetch('/api/images', {
+export const postImages = (images, ownerId) => async (dispatch) => {
+  const formData = new FormData();
+  for (let i = 0; i < images.length; i++) {
+    formData.append('images', images[i]);
+  }
+  formData.append('ownerId', ownerId);
+  const response = await csrfFetch('/api/images', {
     method: 'POST',
-    body: JSON.stringify({ images, ownerId })
+    body: formData,
+    headers: { "Content-Type": "multipart/form-data" }
   })
 
-  const { urlArray } = await res.json();
+  const urlArray = await response.json();
   dispatch(addImages(urlArray));
 }
 
-const initialState = [];
+const initialState = { images: [] };
 
 const imagesReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case ADD_IMAGES:
-      newState = [ ...state, ...action.payload ]
+      newState = Object.assign({}, state)
+      newState.images = [ ...state.images, ...action.payload ];
       return newState;
     default:
       return state;
