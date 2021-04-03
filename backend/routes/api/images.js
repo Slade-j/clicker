@@ -1,6 +1,7 @@
 // backend/routes/api/images.js
 const express = require('express');
 const { Photo } = require('../../db/models');
+const { restoreUser } = require('../../utils/auth');
 const asyncHandler = require('express-async-handler');
 const { s3, multiplePublicFileUpload, multipleMulterUpload } = require('../../awsS3.js');
 
@@ -26,5 +27,11 @@ router.post(
      }
   })
 )
+
+router.get('/', restoreUser, asyncHandler(async (req, res) => {
+  const { user } = req;
+  const photos = await Photo.findAll({ where: { ownerId: user.id }});
+  return res.json({ photos });
+}))
 
 module.exports = router;

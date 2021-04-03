@@ -11,6 +11,7 @@ export const addImages = (images) => {
   }
 }
 
+// posting images to aws and returned url to database
 export const postImages = (images, ownerId) => async (dispatch) => {
   const formData = new FormData();
   for (let i = 0; i < images.length; i++) {

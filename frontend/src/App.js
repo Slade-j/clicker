@@ -49,8 +49,9 @@ import SearchBar from "./components/SearchBar";
 import LinkList from './components/LinkList';
 import UserPic from './components/UserPic';
 import Plaque from "./components/Plaque";
-import './index.css';
 import DropPhoto from "./components/DropPhoto";
+import ImageContainer from './components/ImageContainer';
+import './index.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -74,7 +75,8 @@ function App() {
             components={ {First: Logo, Second: LinkList, Third: SearchBar, Fourth: UserPic}}
             navArray={['/photos', 'You', '/link/test', 'test1', '/login', 'test2']}
             />,
-            <Plaque key='plaque' />
+            <Plaque key='plaque' />,
+            <ImageContainer />
             ])}
         </Route>
         <Route path='/add-photos'>
