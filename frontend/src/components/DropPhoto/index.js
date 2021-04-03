@@ -26,7 +26,7 @@ function DropPhoto() {
   const [ isAll, setIsAll ] = useState(false);
   const [ allClass, setAllClass ] = useState(`${display}`)
   const [ fileValue, setFileValue ] = useState('');
-  const [ test, setTest ] = useState();
+  const [ imageData, setImageData ] = useState([]);
 
   // useEffect for cleanup on ObjectURL
   useEffect(() => {
@@ -39,34 +39,25 @@ function DropPhoto() {
     }
   }, [previews]);
 
-  useEffect(() => {
-    console.log('testState', test);
-  }, [test])
-
-  //useEffect to dispatch to addPhotos
-  // useEffect(() => {
-  //   if(!fileValue) return;
-  //   dispatch(addPhotos(fileValue));
-  //   // dispatch(addThumbNails({
-  //   //   url: URL.createObjectURL(fileValue),
-  //   //   name: fileValue.name
-  //   // }))
-
-  // }, [fileValue]);
-
   // useEffect for slecting all thumbNails
   useEffect(() => {
     if(isAll) setAllClass(`${display} ${all}`)
   }, [isAll])
 
+  let imageFiles = [];
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const file = e.dataTransfer.files[0]
-    console.log(file)
 
-    // dispatch(addPhotos(file))
-    setTest(e.dataTransfer.files)
+    console.log(imageData.length, 'length', imageData, 'imageData')
+    if (imageData.length) imageFiles = [...imageData];
+    const file = e.dataTransfer.files[0]
+
+    imageFiles.push(...e.dataTransfer.files);
+    console.log('here/////////', imageFiles)
+    // const newfiles = priorImages.concat(e.dataTransfer.files);
+    // console.log('newfiles', newfiles)
+    setImageData(imageFiles)
     dispatch(addThumbNails({
       url: URL.createObjectURL(e.dataTransfer.files[0]),
       name: file.name
@@ -103,7 +94,8 @@ function DropPhoto() {
       selected={selected}
       setSelected={setSelected}
       setIsAll={setIsAll}
-      test={test} />
+      imageData={imageData}
+      setImageData={setImageData} />
       <div className={previews.length > 0 ? allClass : dropZone}
         onDragEnter={handleDragEnter}
         onDragOver={handleDragOver}

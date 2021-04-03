@@ -11,7 +11,6 @@ router.post(
   multipleMulterUpload('images'),
   asyncHandler(async (req, res) => {
     const { ownerId } = req.body;
-    console.log('file /////////', req.file, 'files ------------', req.files, 'req=====', req.body)
     try {
       const urlArray = await multiplePublicFileUpload(req.files);
 

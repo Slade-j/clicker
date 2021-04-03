@@ -11,7 +11,7 @@ import {
   allButton,
 } from './UploadNav.module.css';
 
-function UploadNav({ selected, setSelected, setIsAll, test }) {
+function UploadNav({ selected, setSelected, setIsAll, imageData, setImageData }) {
   const dispatch = useDispatch();
   const photos = useSelector(state => state.photos.photos)
   const images = useSelector(state => state.images);
@@ -22,15 +22,16 @@ function UploadNav({ selected, setSelected, setIsAll, test }) {
   const [ photoCount, setPhotoCount ] = useState('');
 
   useEffect(() => {
-    if (selected.length) {
-      setIsSelected(false);
-    }
+    selected.length > 0 ? setIsSelected(false):setIsSelected(true);
   }, [selected]);
 
   useEffect(() => {
     if (previews.length){
       setIsDisabled(false);
       setPhotoCount(`${previews.length} photos`);
+    } else {
+      setIsDisabled(true);
+      setPhotoCount('')
     }
   }, [previews]);
 
@@ -41,9 +42,9 @@ function UploadNav({ selected, setSelected, setIsAll, test }) {
   }
 
   const handleUpload = (e) => {
-    // const formData = new FormData();
-    // formData.append('images', photos)
-    dispatch(postImages(test, user.id));
+    console.log('imageData////', imageData)
+    dispatch(postImages(imageData, user.id));
+    setImageData([]);
   }
 
   return (

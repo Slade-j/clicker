@@ -1,5 +1,6 @@
 // frontend/src/store/photos.js
 import { csrfFetch } from './csrf';
+import { clearThumbNails } from './thumbNails';
 
 const ADD_IMAGES = 'images/add-images';
 
@@ -23,7 +24,7 @@ export const postImages = (images, ownerId) => async (dispatch) => {
   })
 
   const urlArray = await response.json();
-  dispatch(addImages(urlArray));
+  dispatch(clearThumbNails());
 }
 
 const initialState = { images: [] };
@@ -33,7 +34,7 @@ const imagesReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_IMAGES:
       newState = Object.assign({}, state)
-      newState.images = [ ...state.images, ...action.payload ];
+      newState.images = [ ...state.images, action.payload ];
       return newState;
     default:
       return state;
