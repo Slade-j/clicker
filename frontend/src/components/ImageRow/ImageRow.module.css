@@ -1,0 +1,10 @@
+.rowContainer {
+  width: 100%;
+  height: auto;
+  display: flex;
+}
+
+.image {
+  margin: 2px;
+  background-size: contain;
+}

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userPhotos } from '../../store/photos';
 import ImageTile from '../ImageTile';
+import ImageRow from '../ImageRow';
 import { mainContainer, gallery } from './ImageContainer.module.css';
 
 function ImageContainer() {
@@ -10,18 +11,21 @@ function ImageContainer() {
   const photos = useSelector(state => state.photos);
   const [ imageObjs, setImageObjs ] = useState([]);
   const [ layout, setLayout ] = useState([]);
+  const [ isLoaded, setIsLoaded ] = useState(false);
 
   useEffect(() => {
-    dispatch(userPhotos());
+    dispatch(userPhotos()).then(() => setIsLoaded(true));
   }, []);
 
  useEffect(() => {
+   if(!isLoaded) return;
    const imgData = photos.map((photo) => {
      const obj = {}
      const img = new Image()
      img.src = photo.photoUrl
+    //  console.log(img.naturalHeight, img.naturalWidth, 'h x w')
      obj.src = photo.photoUrl
-     obj.asp = Math.round((img.height / img.width) * 100) / 100;
+     obj.asp = Math.round((img.naturalHeight / img.naturalWidth) * 100) / 100;
      obj.height = 300;
      obj.width = Math.round(300 / obj.asp)
      obj.id = photo.id
@@ -29,10 +33,10 @@ function ImageContainer() {
    })
 
    setImageObjs(imgData);
- }, [photos])
+ }, [isLoaded])
 
 useEffect(() => {
-  console.log(imageObjs)
+  if(imageObjs.length < 1) return;
   const maxWidth = window.innerWidth * 0.8;
   let accumlativeWidth = 0;
   const rowLayout = []
@@ -61,7 +65,7 @@ useEffect(() => {
 
   if (row) rowLayout.push(row);
   setLayout(rowLayout);
-  console.log('new layout', rowLayout)
+  // console.log('new layout', rowLayout)
 }, [imageObjs]);
 
   // const img = new Image();
@@ -73,9 +77,9 @@ useEffect(() => {
   return (
     <div className={mainContainer}>
       <div className={gallery}>
-        {photos.length > 0 ?
-          layout.map(photo => {
-            return <ImageTile key={photo.id} photoUrl={photo.url} photoId={photo.id} height={photo.height} width={photo.adjWidth} />
+        {layout.length > 0 && isLoaded ?
+          layout.map((row, idx) => {
+            return <ImageRow key={`row${idx}`} row={row} />
           }):
           <h2 className='missing'>--Your recent images will appear here--</h2>}
       </div>
