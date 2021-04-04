@@ -35,7 +35,7 @@ function DropPhoto() {
       previews.forEach(image => {
         URL.revokeObjectURL(image.url);
       })
-      console.log('clean-up-ran');
+
     }
   }, [previews]);
 
@@ -49,12 +49,11 @@ function DropPhoto() {
     e.preventDefault();
     e.stopPropagation();
 
-    console.log(imageData.length, 'length', imageData, 'imageData')
+
     if (imageData.length) imageFiles = [...imageData];
     const file = e.dataTransfer.files[0]
 
     imageFiles.push(...e.dataTransfer.files);
-    console.log('here/////////', imageFiles)
     // const newfiles = priorImages.concat(e.dataTransfer.files);
     // console.log('newfiles', newfiles)
     setImageData(imageFiles)
@@ -68,14 +67,14 @@ function DropPhoto() {
   const handleDragOver = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('drag event fired')
+
     e.dataTransfer.dropEffect = 'copy';
   }
 
   const handleDragEnter = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('drag enter event fired');
+
   }
 
   const handleClick = (e) => {

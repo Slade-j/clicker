@@ -42,7 +42,6 @@ function UploadNav({ selected, setSelected, setIsAll, imageData, setImageData })
   }
 
   const handleUpload = (e) => {
-    console.log('imageData////', imageData)
     dispatch(postImages(imageData, user.id));
     setImageData([]);
   }

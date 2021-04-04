@@ -5,14 +5,6 @@ import { mainContainer, overlay, overlayContent } from './ImageTile.module.css';
 
 function ImageTile({photoUrl, photoId, width, height}) {
 
-
-
-
-
-
-
-
-
   return (
     <div className={mainContainer} style={{width, height,}}>
       <img src={photoUrl} className='image' style = {{width, height, }}></img>
