@@ -1,0 +1,25 @@
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin: 2px;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+}
+
+.overlayContent {
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+
+/* .image {
+
+} */

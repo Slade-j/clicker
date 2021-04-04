@@ -76,7 +76,7 @@ function App() {
             navArray={['/photos', 'You', '/link/test', 'test1', '/login', 'test2']}
             />,
             <Plaque key='plaque' />,
-            <ImageContainer />
+            <ImageContainer key='imagecontainer' />
             ])}
         </Route>
         <Route path='/add-photos'>
