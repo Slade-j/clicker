@@ -6,7 +6,6 @@ import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
-import Navigation from "./components/Navigation";
 import TopNav from "./components/TopNav";
 import { nav, wrapper, left, right } from './components/TopNav/TopNav.module.css';
 import Logo from "./components/Logo";
@@ -18,6 +17,7 @@ import DropPhoto from "./components/DropPhoto";
 import DivDummy from "./components/DivDummy";
 import FormField from "./components/FormField";
 import ImageContainer from './components/ImageContainer';
+import Home from './components/Home';
 import './index.css';
 
 function App() {
@@ -33,6 +33,9 @@ function App() {
     <>
       {isLoaded && (
         <Switch>
+          <Route exact path="/" >
+            <Home />
+          </Route>
           <Route path="/login">
             <TopNav components={{First: Logo, Second: DivDummy, Third: DivDummy, Fourth: DivDummy }}
             selectors={{ nav, wrapper, left, right }}

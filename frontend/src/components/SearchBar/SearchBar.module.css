@@ -36,3 +36,28 @@
   border: none;
   margin: none;
 }
+
+.links {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0px 2px 0px 5px;
+}
+
+.links a {
+  color: #fff;
+}
+
+.links button {
+  background-color: inherit;
+  color: #fff;
+  box-shadow: none;
+  margin: 0px 0px 0px 5px;
+  padding: 0;
+  border: none;
+  height: 100%;
+  width: 100%;
+}

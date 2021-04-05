@@ -5,7 +5,6 @@ function ImageRow({ row }) {
 
   const rowArray = Object.values(row);
   // console.log(rowArray, 'rowArray');
-  const hieght = rowArray.pop();
   let position;
   return (
     <div className={rowContainer}>
@@ -17,9 +16,10 @@ function ImageRow({ row }) {
             className={image}
             key={image.src}
             style={{
-              width: image.adjWidth,
-              height: image.adjHeight,
+              width: image.adjWidth? image.adjWidth: image.width,
+              height: image.adjHeight? image.adjHeight: image.height,
               backgroundImage: `url(${image.src})`,
+              backgroundRepeat: 'no-repeat',
               backgroundSize: 'contain',
               margin: `${2}px`
             }}></div>
