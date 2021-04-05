@@ -1,5 +1,5 @@
 // frontend/src/components/SignupFormPage/index.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -16,6 +16,10 @@ import {
 	navDiv,
 	navSpan,
 	loginLink,
+	input,
+	label,
+	inputValue,
+	labelValue
  } from './SignupForm.module.css'
 
 function SignupFormPage() {
@@ -27,6 +31,61 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+	const [passwordClass, setPasswordClass] = useState(input);
+	const [passwordLabel, setPasswordLabel] = useState(label);
+	const [confirmClass, setConfirmClass ] = useState(input);
+	const [confirmLabel, setConfirmLabel] = useState(label);
+	const [firstClass, setFirstClass ] = useState(input);
+	const [firstLabel, setFirstLabel] = useState(label);
+	const [emailClass, setEmailClass ] = useState(input);
+	const [emailLabel, setEmailLabel] = useState(label);
+	const [lastClass, setLastClass ] = useState(input);
+	const [lastLabel, setLastLabel] = useState(label);
+
+	useEffect(()=> {
+		const newClass = `${input} ${inputValue}`;
+		const newLabel = `${label} ${labelValue}`;
+		if(email === ""){
+			setEmailClass(input);
+			setEmailLabel(label);
+		} else {
+			setEmailClass(newClass);
+			setEmailLabel(newLabel);
+		}
+
+		if(password === "") {
+			setPasswordClass(input);
+			setPasswordLabel(label);
+		} else {
+			setPasswordClass(newClass);
+			setPasswordLabel(newLabel);
+		}
+
+		if(firstName === "") {
+			setFirstClass(input);
+			setFirstLabel(label);
+		} else {
+			setFirstClass(newClass);
+			setFirstLabel(newLabel);
+		}
+
+		if(lastName === "") {
+			setLastClass(input);
+			setLastLabel(label);
+		} else {
+			setLastClass(newClass);
+			setLastLabel(newLabel);
+		}
+
+		if(confirmPassword === "") {
+			setConfirmClass(input);
+			setConfirmLabel(label);
+		} else {
+			setConfirmClass(newClass);
+			setConfirmLabel(newLabel);
+		}
+
+	}, [email, password, firstName, lastName, confirmPassword])
 
   if (sessionUser) return <Redirect to="/photos" />;
 
@@ -59,52 +118,57 @@ function SignupFormPage() {
 					<div className={inputContainer}>
 						<input
 							type="text"
+							className={emailClass}
 							id='email'
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 							required
 						/>
-						<label htmlFor='email'>Email adress</label>
+						<label className={emailLabel} htmlFor='email'>Email adress</label>
 					</div>
 					<div className={inputContainer}>
 						<input
 							type="text"
 							id='firstName'
+							className={firstClass}
 							value={firstName}
 							onChange={(e) => setFirstName(e.target.value)}
 							required
 						/>
-						<label htmlFor='firstName'>First Name</label>
+						<label className={firstLabel} htmlFor='firstName'>First Name</label>
 					</div>
 					<div className={inputContainer}>
 						<input
 							type="text"
 							id='lastName'
+							className={lastClass}
 							value={lastName}
 							onChange={(e) => setLastName(e.target.value)}
 							required
 						/>
-						<label htmlFor='lastName'>Last Name</label>
+						<label className={lastLabel} htmlFor='lastName'>Last Name</label>
 					</div>
 					<div className={inputContainer}>
 						<input
 							type="password"
 							id='password'
+							className={passwordClass}
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 							required
 						/>
-						<label htmlFor='password'>Password</label>
+						<label className={passwordLabel} htmlFor='password'>Password</label>
 					</div>
 					<div className={inputContainer}>
 						<input
 							type="password"
 							id='confirmPassword'
+							className={confirmClass}
 							value={confirmPassword}
 							onChange={(e) => setConfirmPassword(e.target.value)}
 							required
 						/>
-						<label htmlFor='confirmPassword'>Confirm Password</label>
+						<label className={confirmLabel} htmlFor='confirmPassword'>Confirm Password</label>
 					</div>
 					<button type="submit">Sign Up</button>
 					<div className={navDiv}>

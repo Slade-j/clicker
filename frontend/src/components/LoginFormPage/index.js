@@ -33,8 +33,6 @@ function LoginFormPage() {
 		const [passwordClass, setPasswordClass] = useState(input);
 		const [passwordLabel, setPasswordLabel] = useState(label);
 
-		let labelClass = '';
-
 		useEffect(()=> {
 			const newClass = `${input} ${inputValue}`;
 			const newLabel = `${label} ${labelValue}`;
