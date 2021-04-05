@@ -1,9 +1,22 @@
 // frontend/src/components/SignupFormPage/index.js
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import './SignupForm.css'
+import {
+	formContainer,
+	signup,
+	logo,
+	circles,
+	red,
+	blue,
+	title,
+	inputContainer,
+	navDiv,
+	navSpan,
+	loginLink,
+ } from './SignupForm.module.css'
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -31,57 +44,75 @@ function SignupFormPage() {
 		};
 
 		return (
-			<form className='signup' onSubmit={handleSubmit}>
-				<ul>
-					{errors.map((error, idx) => <li key={idx}>{error}</li>)}
-				</ul>
-				<label>
-					Email
-					<input
-						type="text"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					First Name
-					<input
-						type="text"
-						value={firstName}
-						onChange={(e) => setFirstName(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-				Last Name
-				<input
-					type="text"
-					value={lastName}
-					onChange={(e) => setLastName(e.target.value)}
-					required
-				/>
-				</label>
-				<label>
-					Password
-					<input
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Confirm Password
-					<input
-						type="password"
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<button type="submit">Sign Up</button>
-			</form>
+			<div className={formContainer}>
+				<div className={logo}>
+					<div className={circles}>
+        		<div className={blue}></div>
+        		<div className={red}></div>
+					</div>
+					<h6 className={title}>Sign Up for tickr</h6>
+				</div>
+				<form className={signup} onSubmit={handleSubmit}>
+					<ul>
+						{errors.map((error, idx) => <li key={idx}>{error}</li>)}
+					</ul>
+					<div className={inputContainer}>
+						<input
+							type="text"
+							id='email'
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							required
+						/>
+						<label htmlFor='email'>Email adress</label>
+					</div>
+					<div className={inputContainer}>
+						<input
+							type="text"
+							id='firstName'
+							value={firstName}
+							onChange={(e) => setFirstName(e.target.value)}
+							required
+						/>
+						<label htmlFor='firstName'>First Name</label>
+					</div>
+					<div className={inputContainer}>
+						<input
+							type="text"
+							id='lastName'
+							value={lastName}
+							onChange={(e) => setLastName(e.target.value)}
+							required
+						/>
+						<label htmlFor='lastName'>Last Name</label>
+					</div>
+					<div className={inputContainer}>
+						<input
+							type="password"
+							id='password'
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							required
+						/>
+						<label htmlFor='password'>Password</label>
+					</div>
+					<div className={inputContainer}>
+						<input
+							type="password"
+							id='confirmPassword'
+							value={confirmPassword}
+							onChange={(e) => setConfirmPassword(e.target.value)}
+							required
+						/>
+						<label htmlFor='confirmPassword'>Confirm Password</label>
+					</div>
+					<button type="submit">Sign Up</button>
+					<div className={navDiv}>
+						<span className={navSpan}>Already a tickr member?</span>
+						<Link className={loginLink} to='/login'>Log in here</Link>
+					</div>
+				</form>
+			</div>
 		);
 	}
 

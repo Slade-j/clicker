@@ -1,13 +1,15 @@
 .nav {
-  background-color: #212124;
+  background-color: rgba(21,21,23,.95);
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: sticky;
+  top: 0;
 }
 
 .wrapper {
-  background-color: inherit;
+
   height: inherit;
   width: 80%;
   display: flex;
@@ -15,7 +17,7 @@
 }
 
 .left, .right {
-  background-color: inherit;
+
   height: 100%;
   width: auto;
   display: flex;

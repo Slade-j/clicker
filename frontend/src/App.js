@@ -16,6 +16,7 @@ import UserPic from './components/UserPic';
 import Plaque from "./components/Plaque";
 import DropPhoto from "./components/DropPhoto";
 import DivDummy from "./components/DivDummy";
+import FormField from "./components/FormField";
 import ImageContainer from './components/ImageContainer';
 import './index.css';
 
@@ -42,7 +43,7 @@ function App() {
             <TopNav components={{First: Logo, Second: DivDummy, Third: DivDummy, Fourth: DivDummy }}
             selectors={{ nav, wrapper, left, right }}
             navArray={[]} />
-            <SignupFormPage />
+            <FormField />
           </Route>
           <Route path='/photos'>
           {isLoaded && ([

@@ -1,0 +1,18 @@
+.mainContainer {
+  height: 100%;
+  width: 100%;
+  background-image: url("../../assets/47217746692_8d355a4ca6_5k.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
