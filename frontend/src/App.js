@@ -37,13 +37,13 @@ function App() {
             <TopNav components={{First: Logo, Second: DivDummy, Third: DivDummy, Fourth: DivDummy }}
             selectors={{ nav, wrapper, left, right }}
             navArray={[]} />
-            <LoginFormPage />
+            <FormField form={{Form: LoginFormPage}} />
           </Route>
           <Route path="/signup">
             <TopNav components={{First: Logo, Second: DivDummy, Third: DivDummy, Fourth: DivDummy }}
             selectors={{ nav, wrapper, left, right }}
             navArray={[]} />
-            <FormField />
+            <FormField form={{Form: SignupFormPage}}/>
           </Route>
           <Route path='/photos'>
           {isLoaded && ([
