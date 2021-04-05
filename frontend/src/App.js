@@ -1,44 +1,9 @@
 // frontend/src/App.js
 
-// ************* App without Modal ***************************************
-// import React, { useState, useEffect } from "react";
-// import { useDispatch } from "react-redux";
-// import { Route, Switch } from "react-router-dom";
-// import LoginFormPage from "./components/LoginFormPage";
-// import SignupFormPage from "./components/SignupFormPage";
-// import * as sessionActions from "./store/session";
-// import Navigation from "./components/Navigation";
-
-// function App() {
-//   const dispatch = useDispatch();
-//   const [isLoaded, setIsLoaded] = useState(false);
-//   useEffect(() => {
-//     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-//   }, [dispatch]);
-
-//   return (
-//     <>
-//       <Navigation isLoaded={isLoaded} />
-//       {isLoaded && (
-//         <Switch>
-//           <Route path="/login">
-//             <LoginFormPage />
-//           </Route>
-//           <Route path="/signup">
-//             <SignupFormPage />
-//           </Route>
-//         </Switch>
-//       )}
-//     </>
-//   );
-// }
-
-// export default App;
-
-// ************* App with Modal ******************************************
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
+import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
@@ -50,6 +15,7 @@ import LinkList from './components/LinkList';
 import UserPic from './components/UserPic';
 import Plaque from "./components/Plaque";
 import DropPhoto from "./components/DropPhoto";
+import DivDummy from "./components/DivDummy";
 import ImageContainer from './components/ImageContainer';
 import './index.css';
 
@@ -60,16 +26,25 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  // console.log('divdummy', DivDummy)
+  // <Navigation isLoaded={isLoaded} />
   return (
     <>
-      <Switch>
-        <Route path="/signup">
-          <Navigation isLoaded={isLoaded} />
-            {isLoaded && (
-              <SignupFormPage />
-              )}
-        </Route>
-        <Route path='/photos'>
+      {isLoaded && (
+        <Switch>
+          <Route path="/login">
+            <TopNav components={{First: Logo, Second: DivDummy, Third: DivDummy, Fourth: DivDummy }}
+            selectors={{ nav, wrapper, left, right }}
+            navArray={[]} />
+            <LoginFormPage />
+          </Route>
+          <Route path="/signup">
+            <TopNav components={{First: Logo, Second: DivDummy, Third: DivDummy, Fourth: DivDummy }}
+            selectors={{ nav, wrapper, left, right }}
+            navArray={[]} />
+            <SignupFormPage />
+          </Route>
+          <Route path='/photos'>
           {isLoaded && ([
             <TopNav key='topNav' selectors={ { nav, wrapper, left, right } }
             components={ {First: Logo, Second: LinkList, Third: SearchBar, Fourth: UserPic}}
@@ -82,7 +57,8 @@ function App() {
         <Route path='/add-photos'>
             <DropPhoto />
         </Route>
-      </Switch>
+        </Switch>
+      )}
     </>
   );
 }

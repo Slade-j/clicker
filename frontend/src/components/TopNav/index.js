@@ -10,6 +10,7 @@ function TopNav({ selectors, components, navArray }) {
   const { nav, wrapper, left, right } = selectors;
   const { First, Second, Third, Fourth } = components;
 
+
   return (
     <nav className={nav}>
       <div className={wrapper}>
