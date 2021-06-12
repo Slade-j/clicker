@@ -15,8 +15,8 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 if(!isProduction) app.use(cors());
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(
