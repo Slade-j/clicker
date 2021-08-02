@@ -7,8 +7,8 @@
 }
 
 .pic {
-  background-image: url('../../assets/megalo-box-joe-artwork.png');
   width: 33px;
   height: 33px;
   border-radius: 50%;
+  object-fit: cover;
 }

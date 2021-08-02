@@ -2,7 +2,7 @@
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
-import { search, field, glass, links } from './SearchBar.module.css';
+import styles from './SearchBar.module.css';
 
 function SearchBar() {
   const dispatch = useDispatch();
@@ -13,15 +13,20 @@ function SearchBar() {
   };
 
   return (
-    <div className={search}>
-      <form>
-        <label className={glass}>
-          <input className={field} placeholder='Search a photos or albums'></input>
-        </label>
-      </form>
-      <div className={links}>
-        <Link to='/add-photos'>Upload</Link>
-        <button onClick={logout}>Log Out</button>
+    <div className={styles.search}>
+      <div className={styles.links}>
+        <Link className={styles.uploadLink} to='/add-photos'>
+          <i className="fas fa-cloud-upload-alt fa-2x"></i>
+        </Link>
+        <div className={styles.uploadModal}>
+          <span className={styles.uploadText}>upload images</span>
+        </div>
+        <button className={styles.logout} onClick={logout}>
+          <i className="fas fa-sign-out-alt fa-2x"></i>
+        </button>
+        <div className={styles.logoutModal}>
+          <span className={styles.logoutText}>Log out</span>
+        </div>
       </div>
     </div>
   )

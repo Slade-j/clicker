@@ -15,12 +15,12 @@ function TopNav({ selectors, components, navArray }) {
     <nav className={nav}>
       <div className={wrapper}>
         <div className={left}>
-          <First />
-          <Second navArray={navArray} />
+          {First && <First />}
+          {Second && <Second navArray={navArray} />}
         </div>
         <div className={right}>
-          <Third />
-          <Fourth />
+          {Third && <Third />}
+          {Fourth && <Fourth />}
         </div>
       </div>
     </nav>

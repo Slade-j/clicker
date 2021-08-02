@@ -51,8 +51,7 @@ function App() {
           <Route path='/photos'>
           {isLoaded && ([
             <TopNav key='topNav' selectors={ { nav, wrapper, left, right } }
-            components={ {First: Logo, Second: LinkList, Third: SearchBar, Fourth: UserPic}}
-            navArray={['/photos', 'You', '/link/test', 'test1', '/login', 'test2']}
+            components={ {First: Logo, Second: null, Third: SearchBar, Fourth: UserPic}}
             />,
             <Plaque key='plaque' />,
             <ImageContainer key='imagecontainer' />

@@ -38,8 +38,9 @@
 }
 
 .links {
+  position: relative;
   height: 100%;
-  width: 100%;
+  width: 6rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -60,4 +61,68 @@
   border: none;
   height: 100%;
   width: 100%;
+}
+
+.uploadModal, .logoutModal {
+  display: none;
+}
+
+.uploadLink {
+  position: relative;
+}
+
+.uploadLink:hover + .uploadModal {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 7rem;
+  padding: .25rem;
+  font-size: 13px;
+  font-weight: 600;
+  background-color: rgb(21,21,23);
+  border: solid 1px #fff;
+  color: #fff;
+  top: 53px;
+  right: 15px;
+}
+
+.uploadLink:hover + .uploadModal:before,
+.logout:hover + .logoutModal:before {
+  content: "";
+  transform: rotate(45deg);
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  background-color: rgb(21,21,23);
+  border-left: 1px solid #fff;
+  border-right: 1px solid transparent;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid transparent;
+  right: 50%;
+  top: -7px;
+}
+
+.logout:hover + .logoutModal {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 7rem;
+  padding: .25rem;
+  font-size: 13px;
+  font-weight: 600;
+  background-color: rgb(21,21,23);
+  border: solid 1px #fff;
+  color: #fff;
+  top: 53px;
+  right: -34px;
+}
+
+.logout:hover,
+.uploadLink:hover {
+  cursor: pointer;
+  color: rgba(255, 255, 255, .8);
 }
