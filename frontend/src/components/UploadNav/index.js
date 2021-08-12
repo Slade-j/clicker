@@ -10,9 +10,11 @@ import {
   uploadButton,
   allButton,
 } from './UploadNav.module.css';
+import { useHistory } from 'react-router-dom';
 
 function UploadNav({ selected, setSelected, setIsAll, imageData, setImageData }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const photos = useSelector(state => state.photos.photos)
   const images = useSelector(state => state.images);
   const user = useSelector(state => state.session.user);
@@ -46,6 +48,11 @@ function UploadNav({ selected, setSelected, setIsAll, imageData, setImageData })
     setImageData([]);
   }
 
+  const handleCancel = (e) => {
+    e.stopPropagation();
+    history.push('/photos')
+  }
+
   return (
     <nav className={uploadNav}>
       <div className={deleteDiv}>
@@ -58,6 +65,7 @@ function UploadNav({ selected, setSelected, setIsAll, imageData, setImageData })
         <button className={deleteButton} disabled={isSelected}>Remove</button>
       </div>
       <div className={uploadDiv}>
+        <button className={"cancel"} onClick={handleCancel}>Cancel</button>
         <button
         className={uploadButton}
         disabled={isDisabled}
