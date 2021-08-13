@@ -1,6 +1,7 @@
 // frontend/src/components/Logo/Logo.js
 
-import { logo, circles, blue, red, text} from './Logo.module.css';
+import { NavLink } from 'react-router-dom';
+import { logo, circles, blue, red, text, linkedLogo} from './Logo.module.css';
 
 // special componant for logo
 function Logo() {
@@ -11,7 +12,9 @@ function Logo() {
         <div className={red}></div>
       </div>
       <div className='text-container'></div>
-        <h3 className={text}>tickr</h3>
+        <NavLink className={linkedLogo} to={'/photos'}>
+          <h3 className={text}>tickr</h3>
+        </NavLink>
     </div>
   )
 }
