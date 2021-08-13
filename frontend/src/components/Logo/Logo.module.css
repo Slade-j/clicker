@@ -37,4 +37,9 @@
   font-weight: 700;
   font-size: xx-large;
   color: #fff;
+  margin: 0;
+}
+
+.linkedLogo {
+  text-decoration: none;
 }
