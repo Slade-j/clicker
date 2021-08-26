@@ -12,7 +12,15 @@ import {
 } from './UploadNav.module.css';
 import { useHistory } from 'react-router-dom';
 
-function UploadNav({ selected, setSelected, setIsAll, imageData, setImageData }) {
+function UploadNav(
+  {
+    selected,
+    setSelected,
+    setIsAll,
+    imageData,
+    setImageData,
+  }
+) {
   const dispatch = useDispatch();
   const history = useHistory();
   const photos = useSelector(state => state.photos.photos)
