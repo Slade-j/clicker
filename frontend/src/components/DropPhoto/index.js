@@ -84,6 +84,10 @@ function DropPhoto() {
   }
 
   const handleFile = (e) => {
+    console.log(e.target.value);
+    const images = [e.target.value, ...imageData];
+
+
     setFileValue(e.target.value);
   }
 
