@@ -84,9 +84,14 @@ function DropPhoto() {
   }
 
   const handleFile = (e) => {
-    console.log(e.target.value);
-    const images = [e.target.value, ...imageData];
+    console.log(e.target.files);
+    const file = e.target.files[0];
+    const images = [...imageData, e.target.files];
 
+    dispatch(addThumbNails({
+      url: URL.createObjectURL(file),
+      name: file.name
+      }))
 
     setFileValue(e.target.value);
   }

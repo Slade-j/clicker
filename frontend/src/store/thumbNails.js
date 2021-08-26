@@ -2,16 +2,26 @@
 
 const ADD_THUMBNAILS = 'thumbNails/addThumbNails';
 const CLEAR_THUMBNAILS = 'thumbNails/clearThumbNails';
+const REMOVE_THUMBNAIL = 'thumbNails/removeThumNail';
 
-export const addThumbNails = (thumbNails) => {
-  return {
-    type: ADD_THUMBNAILS,
-    payload: thumbNails
-  };
-};
+export const addThumbNails = (thumbNails) => ({
+  type: ADD_THUMBNAILS,
+  payload: thumbNails
+});
 
-export const clearThumbNails = () => {
-  return { type: CLEAR_THUMBNAILS }
+export const clearThumbNails = () => ({
+  type: CLEAR_THUMBNAILS
+});
+
+export const removeThumbNail = (name) => ({
+  type: REMOVE_THUMBNAIL,
+  payload: name
+});
+
+// Reducer helper function
+const spliceThumbNail = (thumbNails, selected) => {
+
+
 }
 
 const initialState = [];
@@ -25,6 +35,8 @@ const thumbNailsReducer = (state=initialState, action) => {
     case CLEAR_THUMBNAILS:
       newState = [];
       return newState;
+    case REMOVE_THUMBNAIL:
+      return spliceThumbNail(state, action.payload);
     default:
       return state;
   }
